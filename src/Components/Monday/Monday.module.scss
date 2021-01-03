@@ -1,0 +1,79 @@
+.counterWrap {
+  margin: 0 auto;
+  padding: 30px 20px;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  border: 3px solid blue;
+  border-radius: 10px;
+}
+
+.counter {
+  margin-bottom :10px;
+  width: 50%;
+  font-size: 50px;
+  text-align: center;
+  border: 1px solid blue;
+  border-radius: 10px;
+  background: antiquewhite;
+}
+
+.btnWrapper {
+  * {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+}
+
+.incBtn {
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  appearance: none;
+  background-color: green;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgb(68, 255, 0);
+
+
+}
+
+.resetBtn {
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  appearance: none;
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+
+}
+
+.disabledBtn {
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  appearance: none;
+  background-color: #797a79;
+  color: #aeadad;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(160, 155, 155, 0.5);
+}
