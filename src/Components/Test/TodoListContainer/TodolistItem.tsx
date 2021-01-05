@@ -21,7 +21,6 @@ export const TodolistItem: React.FC<TodolistItem> = (props) => {
   };
 
   const changeStatus = (e: ChangeEvent<HTMLInputElement>):void => {
-    // debugger;
     const checkboxStatus = e.currentTarget.checked;
     props.changeStatus(todoListID, id, checkboxStatus);
   }

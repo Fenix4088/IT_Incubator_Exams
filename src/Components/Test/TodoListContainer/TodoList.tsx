@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState, MouseEvent } from "react";
-import { TaskType, todoListType } from "./TodoListApp";
+import { FilterType, TaskType, todoListType } from "./TodoListApp";
 import { TodolistItem } from "./TodolistItem";
 import s from "./Todolist.module.scss";
 
@@ -14,6 +14,7 @@ type TodoListType = {
     taskId: string,
     statusValue: boolean
   ) => void;
+  changeFilterStatus: (todoListID: string, filterValue: FilterType) => void;
 };
 
 export const TodoList: React.FC<TodoListType> = (props) => {
@@ -28,12 +29,20 @@ export const TodoList: React.FC<TodoListType> = (props) => {
     props.addTask(inputValue, props.id);
     setInputValue("");
   };
+  const changeFilterAll = (): void => props.changeFilterStatus(props.id, "all");
+  const changeFilterActive = (): void => props.changeFilterStatus(props.id, "active");
+  const changeFilterCompleted = (): void => props.changeFilterStatus(props.id, "completed");
 
   return (
     <div className={s.todoList}>
       <h3>{todoListInfo.title}</h3>
       <input onChange={onChangeHandler} type="text" value={inputValue} />
       <button onClick={addTask}>Add task</button>
+      <div>
+        <button onClick={changeFilterAll}>all</button>
+        <button onClick={changeFilterActive}>active</button>
+        <button onClick={changeFilterCompleted}>completed</button>
+      </div>
       <ul>
         {todoListTasks.map((todoListTask) => (
           <TodolistItem
