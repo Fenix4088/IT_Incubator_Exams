@@ -4,8 +4,16 @@ import { TodolistItem } from "./TodolistItem";
 import s from "./Todolist.module.scss";
 
 type TodoListType = {
+  id: string;
   todoListInfo: todoListType;
   todoListTasks: Array<TaskType>;
+  addTask: (taskValue: string, todoListID: string) => void;
+  removeTask: (todoListID: string, taskId: string) => void;
+  changeStatus: (
+    todoListID: string,
+    taskId: string,
+    statusValue: boolean
+  ) => void;
 };
 
 export const TodoList: React.FC<TodoListType> = (props) => {
@@ -17,7 +25,8 @@ export const TodoList: React.FC<TodoListType> = (props) => {
     setInputValue(e.currentTarget.value);
   };
   const addTask = (e: MouseEvent<HTMLButtonElement>): void => {
-
+    props.addTask(inputValue, props.id);
+    setInputValue("");
   };
 
   return (
@@ -29,8 +38,12 @@ export const TodoList: React.FC<TodoListType> = (props) => {
         {todoListTasks.map((todoListTask) => (
           <TodolistItem
             key={todoListTask.taskId}
+            id={todoListTask.taskId}
+            todoListID={props.id}
+            removeTask={props.removeTask}
             taskName={todoListTask.taskName}
-            taskStatus={todoListTask.status}
+            taskStatus={todoListTask.isDone}
+            changeStatus={props.changeStatus}
           />
         ))}
       </ul>
