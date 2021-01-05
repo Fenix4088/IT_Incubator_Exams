@@ -35,13 +35,13 @@ export const TodoList: React.FC<TodoListType> = (props) => {
 
   return (
     <div className={s.todoList}>
-      <h3>{todoListInfo.title}</h3>
-      <input onChange={onChangeHandler} type="text" value={inputValue} />
-      <button onClick={addTask}>Add task</button>
-      <div>
-        <button onClick={changeFilterAll}>all</button>
-        <button onClick={changeFilterActive}>active</button>
-        <button onClick={changeFilterCompleted}>completed</button>
+      <h3 className={s.title}>{todoListInfo.title}</h3>
+      <input onChange={onChangeHandler} type="text" value={inputValue}  className={s.mainInput}/>
+      <button onClick={addTask} className={s.addBtn}>Add task</button>
+      <div className={s.btnsWrap}>
+        <button onClick={changeFilterAll} className={s.allFilterBtn}>all</button>
+        <button onClick={changeFilterActive} className={s.activeFilterBtn}>active</button>
+        <button onClick={changeFilterCompleted} className={s.completedFilterBtn}>completed</button>
       </div>
       <ul>
         {todoListTasks.map((todoListTask) => (
