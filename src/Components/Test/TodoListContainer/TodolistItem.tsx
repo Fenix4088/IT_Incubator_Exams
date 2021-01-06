@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from "react";
+import s from "./Todolist.module.scss"
 
 type TodolistItem = {
   id: string;
@@ -27,11 +28,16 @@ export const TodolistItem: React.FC<TodolistItem> = (props) => {
 
   return (
     <li>
-      <label>
+{/*      <label>
         <input onChange={changeStatus} type="checkbox" checked={taskStatus}/>
         {taskName}
-      </label>
-      <button onClick={removeTask}>X</button>
+      </label>*/}
+      <div className={s.checkboxWrap}>
+        <input onChange={changeStatus} type="checkbox" id={props.id} checked={taskStatus}/>
+        <label htmlFor={props.id}></label>
+        <span>{taskName}</span>
+        <button onClick={removeTask}>X</button>
+      </div>
     </li>
   );
 };

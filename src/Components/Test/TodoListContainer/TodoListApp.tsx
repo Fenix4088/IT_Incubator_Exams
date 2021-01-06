@@ -40,16 +40,22 @@ export const TodoListApp = () => {
       { taskId: v1(), taskName: "react.docs", isDone: true },
     ],
   });
+  const [error, setError] = useState<string>("");
 
   const addTask = (taskValue: string, todoListID: string): void => {
-    const newTask = {
-      taskId: v1(),
-      taskName: taskValue,
-      isDone: false,
-    };
+    if(taskValue.trim()) {
+      const newTask = {
+        taskId: v1(),
+        taskName: taskValue,
+        isDone: false,
+      };
 
-    tasks[todoListID] = [newTask, ...tasks[todoListID]];
-    setTasks({ ...tasks });
+      tasks[todoListID] = [newTask, ...tasks[todoListID]];
+      setTasks({ ...tasks });
+    } else {
+      setError("Enter a correct value!");
+    }
+
   };
   const removeTask = (todoListID: string, taskId: string): void => {
     tasks[todoListID] = tasks[todoListID].filter(
@@ -90,19 +96,31 @@ export const TodoListApp = () => {
   ): Array<TaskType> => {
     let todoList = tasks[todoListID];
     if (filterValue === "active") {
-      todoList = todoList.filter((item) => item.isDone);
+      todoList = todoList.filter((item) => !item.isDone);
     }
 
     if (filterValue === "completed") {
-      todoList = todoList.filter((item) => !item.isDone);
+      todoList = todoList.filter((item) => item.isDone);
     }
 
     return todoList;
   };
 
+  const removeTodoList = (todoListID: string):void => {
+    const restTodoLists = todoLists.filter(item => item.id !== todoListID);
+    delete tasks[todoListID];
+    setTodoLists([...restTodoLists]);
+
+  }
+
+  const dismissError = ():void => {
+    setError("")
+  }
+
   return (
     <div className={s.todoListWrapper}>
       {todoLists.map((todoList) => {
+
         const filteredTasks = filterTodoList(todoList.filter, todoList.id)
 
         return (
@@ -115,6 +133,9 @@ export const TodoListApp = () => {
             removeTask={removeTask}
             changeStatus={changeStatus}
             changeFilterStatus={changeFilterStatus}
+            removeTodoList={removeTodoList}
+            dismissError={dismissError}
+            error={error}
           />
         );
       })}
