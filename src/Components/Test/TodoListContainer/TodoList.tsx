@@ -46,7 +46,9 @@ export const TodoList: React.FC<TodoListType> = (props) => {
     <div className={s.todoList}>
       <h3 className={s.title}>
         {todoListInfo.title}
-        <button onClick={removeTodoList}>X</button>
+        <button onClick={removeTodoList} className={`${s.deleteBtn} ${s.deleteBtnBig}`}>
+          X
+        </button>
       </h3>
       {props.error && <div className={s.error}>{props.error}</div>}
       <input
@@ -74,8 +76,8 @@ export const TodoList: React.FC<TodoListType> = (props) => {
           completed
         </button>
       </div>
-      <ul>
-        {todoListTasks.map((todoListTask) => (
+      <ul className={s.list}>
+        {todoListTasks.length ? todoListTasks.map((todoListTask) => (
           <TodolistItem
             key={todoListTask.taskId}
             id={todoListTask.taskId}
@@ -85,7 +87,7 @@ export const TodoList: React.FC<TodoListType> = (props) => {
             taskStatus={todoListTask.isDone}
             changeStatus={props.changeStatus}
           />
-        ))}
+        )) : <div className={s.noTasksMessage}>You have no {todoListInfo.filter} tasks :-)</div>}
       </ul>
     </div>
   );

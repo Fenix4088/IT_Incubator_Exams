@@ -121,7 +121,7 @@ export const TodoListApp = () => {
     <div className={s.todoListWrapper}>
       {todoLists.map((todoList) => {
 
-        const filteredTasks = filterTodoList(todoList.filter, todoList.id)
+        const filteredTasks = filterTodoList(todoList.filter, todoList.id);
 
         return (
           <TodoList
@@ -142,3 +142,4 @@ export const TodoListApp = () => {
     </div>
   );
 };
+

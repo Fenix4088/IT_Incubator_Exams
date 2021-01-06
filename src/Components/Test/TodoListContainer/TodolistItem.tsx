@@ -27,16 +27,24 @@ export const TodolistItem: React.FC<TodolistItem> = (props) => {
   }
 
   return (
-    <li>
-{/*      <label>
+    <li className={s.listItem}>
+      {/*      <label>
         <input onChange={changeStatus} type="checkbox" checked={taskStatus}/>
         {taskName}
       </label>*/}
       <div className={s.checkboxWrap}>
-        <input onChange={changeStatus} type="checkbox" id={props.id} checked={taskStatus}/>
-        <label htmlFor={props.id}></label>
+        <input
+          onChange={changeStatus}
+          type="checkbox"
+          id={props.id}
+          checked={taskStatus}
+          className={s.checkbox}
+        />
+        <label htmlFor={props.id} className={s.label}></label>
         <span>{taskName}</span>
-        <button onClick={removeTask}>X</button>
+        <button onClick={removeTask} className={`${s.deleteBtn} ${s.deleteBtnSmall}`}>
+          X
+        </button>
       </div>
     </li>
   );
