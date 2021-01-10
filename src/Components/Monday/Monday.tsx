@@ -23,7 +23,10 @@ export const Monday =  () => {
 
     const icreaseCounter =  (): void => {
         setCounter(counter + 1);
+
     }
+
+
 
     const resetCounter = ():void => {
         setCounter(0);
