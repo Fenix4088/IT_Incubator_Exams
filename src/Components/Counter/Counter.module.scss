@@ -1,0 +1,20 @@
+.counterWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  * {
+    margin-right: 25px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+
+.errorField {
+  background-color: red;
+}
+
+.colorRed {
+  color: red;
+}

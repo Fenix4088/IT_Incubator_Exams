@@ -8,11 +8,13 @@ import { Wednesday } from "./Components/Wednesday/Wednesday";
 import { Thursday } from "./Components/Thursday/Thursday";
 import { Friday } from "./Components/Friday/Friday";
 import { Test } from "./Components/Test/Tests";
+import { Counter } from "./Components/Counter/Counter";
 
 function App() {
   return (
     <div>
       <Navbar />
+      <Route path={"/counter"} render={() => <Counter />} />
       <Route path={"/monday"} render={() => <Monday />} />
       <Route path={"/tuesday"} render={() => <Tuesday />} />
       <Route path={"/wednesday"} render={() => <Wednesday />} />

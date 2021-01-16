@@ -7,6 +7,9 @@ import s from "./Navbar.module.scss";
 export const Navbar = () => {
   return (
     <nav className={s.navContainer}>
+        <NavLink to={"/counter"} className={`${s.btn} ${s.mondayBtn}`}>
+            Counter
+        </NavLink>
       <NavLink to={"/monday"} className={`${s.btn} ${s.mondayBtn}`}>
         Monday
       </NavLink>
