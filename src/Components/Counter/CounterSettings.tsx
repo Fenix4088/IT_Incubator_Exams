@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from "react";
 import { Button } from "./Button";
-import { ActionType, actionTypeNames, StateType } from "./Counter";
+import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
+import {ActionType, actionTypeNames} from "./counterReducer";
 
 
 type CounterSettingsType = {
