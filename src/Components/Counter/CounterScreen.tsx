@@ -12,7 +12,6 @@ type CounterScreenPropsType = {
 export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
   const {
     maxValue,
-    startValue,
     setBtnStatus,
     resetBtnStatus,
     incBtnStatus,
@@ -55,11 +54,13 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
   return (
     <div className={s.block}>
       <div className={maxValue === currentValue ? s.colorRed : ""}>
-        {maxValueErrorStatus || startValueErrorStatus
-          ? <span className={s.errorMessage}>Incorrect value</span>
-          : !setBtnStatus
-          ? "enter value and press set"
-          : currentValue}
+        {maxValueErrorStatus || startValueErrorStatus ? (
+          <span className={s.errorMessage}>Incorrect value</span>
+        ) : !setBtnStatus ? (
+          "enter value and press set"
+        ) : (
+          currentValue
+        )}
       </div>
       <div>
         <Button
