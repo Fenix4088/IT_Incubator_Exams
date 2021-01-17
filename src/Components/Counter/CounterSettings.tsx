@@ -37,6 +37,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
       state.startValue >= 0
     ) {
       dispatch({ type: MAX_VALUE_ERROR, status: false });
+      dispatch({ type: START_VALUE_ERROR, status: false });
       dispatch({ type: DISABLED_SET_BTN, status: false });
     } else {
       dispatch({ type: MAX_VALUE_ERROR, status: true });
@@ -56,6 +57,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
 
     if (inputValue < state.maxValue && inputValue >= 0 && state.maxValue >= 0) {
       dispatch({ type: START_VALUE_ERROR, status: false });
+      dispatch({ type: MAX_VALUE_ERROR, status: false });
       dispatch({ type: DISABLED_SET_BTN, status: false });
     } else {
       dispatch({ type: START_VALUE_ERROR, status: true });
