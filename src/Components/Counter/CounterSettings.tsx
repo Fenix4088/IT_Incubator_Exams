@@ -17,7 +17,8 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     DISABLED_SET_BTN,
     SET_START_VALUE,
     SET_CURRENT_VALUE,
-    SET_ERROR,
+    MAX_VALUE_ERROR,
+    START_VALUE_ERROR,
   } = actionTypeNames;
 
   const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,10 +32,10 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     });
 
     if (inputValue > state.startValue && inputValue >= 0 && state.startValue >= 0) {
-      dispatch({ type: SET_ERROR, status: false });
+      dispatch({ type: MAX_VALUE_ERROR, status: false });
       dispatch({ type: DISABLED_SET_BTN, status: false });
     } else {
-      dispatch({ type: SET_ERROR, status: true });
+      dispatch({ type: MAX_VALUE_ERROR, status: true });
       dispatch({ type: DISABLED_SET_BTN, status: true });
     }
   };
@@ -50,10 +51,10 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     });
 
     if (inputValue < state.maxValue && inputValue >= 0 && state.maxValue >= 0) {
-      dispatch({ type: SET_ERROR, status: false });
+      dispatch({ type: START_VALUE_ERROR, status: false });
       dispatch({ type: DISABLED_SET_BTN, status: false });
     } else {
-      dispatch({ type: SET_ERROR, status: true });
+      dispatch({ type: START_VALUE_ERROR, status: true });
       dispatch({ type: DISABLED_SET_BTN, status: true });
     }
   };
@@ -77,7 +78,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
             value={state.maxValue}
             onChange={onChangeMaxValue}
             type="number"
-            className={state.errorStatus ? s.errorField : ""}
+            className={state.maxValueErrorStatus ? s.errorField : ""}
           />
         </div>
         <div>
@@ -86,7 +87,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
             onChange={onChangeStartValue}
             value={state.startValue}
             type="number"
-            className={state.errorStatus ? s.errorField : ""}
+            className={state.startValueErrorStatus ? s.errorField : ""}
           />
         </div>
       </div>

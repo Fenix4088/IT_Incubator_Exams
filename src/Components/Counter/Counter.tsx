@@ -10,7 +10,8 @@ export type StateType = {
   setBtnStatus: boolean;
   incBtnStatus: boolean;
   resetBtnStatus: boolean;
-  errorStatus: boolean;
+  maxValueErrorStatus: boolean;
+  startValueErrorStatus: boolean;
 };
 
 // * main action type
@@ -22,7 +23,8 @@ export type ActionType =
   | SetCurrentValueAT
   | ResetCounterAT
   | DisableCounterControlsBtnAT
-  | SetErrorStatusAT;
+  | MaxValueErrorStatusAT
+  | StartValueErrorStatusAT;
 
 // * actions types
 type SetMaxValueAT = {
@@ -57,8 +59,13 @@ type DisableCounterControlsBtnAT = {
   resetBtnStatus: boolean;
 };
 
-type SetErrorStatusAT = {
-  type: actionTypeNames.SET_ERROR;
+type MaxValueErrorStatusAT = {
+  type: actionTypeNames.MAX_VALUE_ERROR;
+  status: boolean;
+};
+
+type StartValueErrorStatusAT = {
+  type: actionTypeNames.START_VALUE_ERROR;
   status: boolean;
 };
 
@@ -69,7 +76,8 @@ const initialState: StateType = {
   setBtnStatus: true,
   incBtnStatus: false,
   resetBtnStatus: true,
-  errorStatus: false,
+  maxValueErrorStatus: false,
+  startValueErrorStatus: false,
 };
 
 export enum actionTypeNames {
@@ -80,7 +88,8 @@ export enum actionTypeNames {
   SET_CURRENT_VALUE = "SET-CURRENT-VALUE",
   RESET_COUNTER = "RESET-COUNTER",
   DISABLE_COUNTER_CONTROL_BTNS = "DISABLE-COUNTER-CONTROL-BTNS",
-  SET_ERROR = "SET-ERROR",
+  MAX_VALUE_ERROR = "MAX-VALUE-ERROR",
+  START_VALUE_ERROR = "START-VALUE-ERROR",
 }
 
 const reducer = (state: StateType, action: ActionType): StateType => {
@@ -122,10 +131,15 @@ const reducer = (state: StateType, action: ActionType): StateType => {
         resetBtnStatus: action.resetBtnStatus,
         incBtnStatus: action.incBtnStatus,
       };
-    case actionTypeNames.SET_ERROR:
+    case actionTypeNames.MAX_VALUE_ERROR:
       return {
         ...state,
-        errorStatus: action.status,
+        maxValueErrorStatus: action.status,
+      };
+    case actionTypeNames.START_VALUE_ERROR:
+      return {
+        ...state,
+        startValueErrorStatus: action.status,
       };
 
     default:

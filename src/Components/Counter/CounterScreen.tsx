@@ -10,7 +10,7 @@ type CounterScreenPropsType = {
 }
 
 export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
-    const {maxValue, startValue, setBtnStatus, resetBtnStatus, incBtnStatus, currentValue ,errorStatus} = props.state;
+    const {maxValue, startValue, setBtnStatus, resetBtnStatus, incBtnStatus, currentValue ,maxValueErrorStatus} = props.state;
     const {dispatch} = props;
     const {INC_COUNTER, DISABLE_COUNTER_CONTROL_BTNS, RESET_COUNTER} = actionTypeNames
 
@@ -32,7 +32,7 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
     return (
         <div>
             <div className={maxValue === currentValue ? s.colorRed : ""}>
-                {errorStatus ? "Incorrect value " : (!setBtnStatus ? "enter value and press set" : currentValue)}
+                {maxValueErrorStatus ? "Incorrect value " : (!setBtnStatus ? "enter value and press set" : currentValue)}
             </div>
             <div>
                 <Button value={"inc"} disabled={incBtnStatus} onClick={onIncBtnClick}/>
