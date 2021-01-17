@@ -2,8 +2,7 @@ import React, { ChangeEvent } from "react";
 import { Button } from "./Button";
 import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
-import {ActionType, actionTypeNames} from "./counterReducer";
-
+import { ActionType, actionTypeNames } from "./counterReducer";
 
 type CounterSettingsType = {
   state: StateType;
@@ -32,7 +31,11 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
       resetBtnStatus: true,
     });
 
-    if (inputValue > state.startValue && inputValue >= 0 && state.startValue >= 0) {
+    if (
+      inputValue > state.startValue &&
+      inputValue >= 0 &&
+      state.startValue >= 0
+    ) {
       dispatch({ type: MAX_VALUE_ERROR, status: false });
       dispatch({ type: DISABLED_SET_BTN, status: false });
     } else {
@@ -71,24 +74,28 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
   };
 
   return (
-    <div>
+    <div className={s.block}>
       <div>
-        <div>
-          <span>max value: </span>
+        <div className={s.row}>
+          <span className={s.inputTitle}>max value: </span>
           <input
             value={state.maxValue}
             onChange={onChangeMaxValue}
             type="number"
-            className={state.maxValueErrorStatus ? s.errorField : ""}
+            className={`${state.maxValueErrorStatus ? s.errorField : ""} ${
+              s.input
+            }`}
           />
         </div>
-        <div>
-          <span>start value: </span>
+        <div className={s.row}>
+          <span className={s.inputTitle}>start value: </span>
           <input
             onChange={onChangeStartValue}
             value={state.startValue}
             type="number"
-            className={state.startValueErrorStatus ? s.errorField : ""}
+            className={`${state.startValueErrorStatus ? s.errorField : ""} ${
+              s.input
+            }`}
           />
         </div>
       </div>
@@ -97,6 +104,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
           value={"Set"}
           disabled={state.setBtnStatus}
           onClick={onSetBtnClick}
+          className={`${state.setBtnStatus ? s.disabledBtn : s.incBtn}`}
         />
       </div>
     </div>

@@ -110,7 +110,6 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
         ...state,
         startValueErrorStatus: action.status,
       };
-
     default:
       throw new Error("Bad action");
   }
