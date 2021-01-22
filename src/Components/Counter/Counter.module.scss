@@ -111,3 +111,18 @@
   transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
   box-shadow: 0 2px 25px rgba(160, 155, 155, 0.5);
 }
+
+.settingsBtn {
+  display: inline-block;
+  font-size: 15px;
+  padding: 10px 20px;
+  appearance: none;
+  background-color: #d45115;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgb(203, 120, 32);
+}

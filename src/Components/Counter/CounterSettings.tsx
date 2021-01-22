@@ -20,6 +20,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     SET_CURRENT_VALUE,
     MAX_VALUE_ERROR,
     START_VALUE_ERROR,
+    TOGGLE_SETTINGS_WINDOW,
   } = actionTypeNames;
 
   const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +67,10 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     }
   };
 
+  const showCounterDisplay = () => {
+    dispatch({type: TOGGLE_SETTINGS_WINDOW, status: false});
+  };
+
   const onSetBtnClick = () => {
     dispatch({
       type: DISABLE_COUNTER_CONTROL_BTNS,
@@ -78,6 +83,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
       maxValue: state.maxValue,
       startValue: state.startValue,
     });
+    showCounterDisplay();
   };
 
   return (

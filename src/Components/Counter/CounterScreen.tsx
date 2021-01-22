@@ -26,6 +26,7 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
     INC_COUNTER,
     DISABLE_COUNTER_CONTROL_BTNS,
     RESET_COUNTER,
+    TOGGLE_SETTINGS_WINDOW,
   } = actionTypeNames;
 
   const onIncBtnClick = () => {
@@ -51,6 +52,10 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
     });
   };
 
+  const onSettingsBtnClick = () => {
+    dispatch({type: TOGGLE_SETTINGS_WINDOW, status: true});
+  };
+
   return (
     <div className={s.block}>
       <div className={maxValue === currentValue ? s.colorRed : ""}>
@@ -74,6 +79,11 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
           disabled={resetBtnStatus}
           onClick={onResetBtnClick}
           className={`${resetBtnStatus ? s.disabledBtn : s.resetBtn} ${s.btn}`}
+        />
+        <Button
+          value={"settings"}
+          onClick={onSettingsBtnClick}
+          className={`${s.settingsBtn} ${s.btn}`}
         />
       </div>
     </div>

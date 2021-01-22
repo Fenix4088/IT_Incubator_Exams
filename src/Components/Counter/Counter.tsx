@@ -14,6 +14,7 @@ export type StateType = {
   resetBtnStatus: boolean;
   maxValueErrorStatus: boolean;
   startValueErrorStatus: boolean;
+  showSettings: boolean;
 };
 
 const initialState: StateType = {
@@ -27,6 +28,7 @@ const initialState: StateType = {
   resetBtnStatus: true,
   maxValueErrorStatus: false,
   startValueErrorStatus: false,
+  showSettings: false,
 };
 
 export const Counter = () => {
@@ -34,8 +36,11 @@ export const Counter = () => {
 
   return (
     <div className={s.counterWrap}>
-      <CounterSettings state={state} dispatch={dispatch} />
-      <CounterScreen state={state} dispatch={dispatch} />
+      {state.showSettings ? (
+        <CounterSettings state={state} dispatch={dispatch} />
+      ) : (
+        <CounterScreen state={state} dispatch={dispatch} />
+      )}
     </div>
   );
 };

@@ -10,7 +10,8 @@ export type ActionType =
   | ResetCounterAT
   | DisableCounterControlsBtnAT
   | MaxValueErrorStatusAT
-  | StartValueErrorStatusAT;
+  | StartValueErrorStatusAT
+  | ToggleSettingsWindowAT;
 
 // * actions types
 type SetMaxValueAT = {
@@ -49,6 +50,11 @@ type StartValueErrorStatusAT = {
   status: boolean;
 };
 
+type ToggleSettingsWindowAT = {
+  type: actionTypeNames.TOGGLE_SETTINGS_WINDOW;
+  status: boolean;
+};
+
 export enum actionTypeNames {
   SET_MAX_VALUE = "SET-MAX-VALUE",
   SET_START_VALUE = "SET-START-VALUE",
@@ -59,6 +65,7 @@ export enum actionTypeNames {
   DISABLE_COUNTER_CONTROL_BTNS = "DISABLE-COUNTER-CONTROL-BTNS",
   MAX_VALUE_ERROR = "MAX-VALUE-ERROR",
   START_VALUE_ERROR = "START-VALUE-ERROR",
+  TOGGLE_SETTINGS_WINDOW = "TOGGLE-SETTINGS-WINDOW",
 }
 
 export const reducer = (state: StateType, action: ActionType): StateType => {
@@ -109,6 +116,11 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
       return {
         ...state,
         startValueErrorStatus: action.status,
+      };
+      case actionTypeNames.TOGGLE_SETTINGS_WINDOW:
+      return {
+        ...state,
+        showSettings: action.status,
       };
     default:
       throw new Error("Bad action");

@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Route path={"/counter"} render={() => <Counter />} />
+        <Route path={"/counter"} render={() => <Counter />} />
       <Route path={"/monday"} render={() => <Monday />} />
       <Route path={"/tuesday"} render={() => <Tuesday />} />
       <Route path={"/wednesday"} render={() => <Wednesday />} />
