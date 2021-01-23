@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "./Button";
 import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
@@ -30,6 +30,7 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
   } = actionTypeNames;
 
   const onIncBtnClick = () => {
+    console.log(currentValue);
     if (maxValue > currentValue) {
       dispatch({ type: INC_COUNTER });
     }
@@ -53,7 +54,7 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
   };
 
   const onSettingsBtnClick = () => {
-    dispatch({type: TOGGLE_SETTINGS_WINDOW, status: true});
+    dispatch({ type: TOGGLE_SETTINGS_WINDOW, status: true });
   };
 
   return (
