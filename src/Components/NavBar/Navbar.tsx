@@ -1,14 +1,56 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 //Styles
 import s from "./Navbar.module.scss";
-import {PATH} from "../../App";
+
+import {
+  AppBar,
+  IconButton,
+  Typography,
+  Toolbar,
+  makeStyles,
+  createStyles,
+  Theme,
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import { NavbarList } from "./NavbarList";
+import { menusId, navbarListData } from "./NavbarData";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    topMenuItemWrap: {
+      display: "flex",
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+  })
+);
 
 export const Navbar = () => {
+  const classes = useStyles();
+
   return (
     <nav className={s.navContainer}>
-        <NavLink to={PATH.COUNTER} className={`${s.btn} ${s.mondayBtn}`}>
+      <AppBar position="fixed">
+        <Toolbar variant="dense">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit">
+            <div className={classes.topMenuItemWrap}>
+              <NavbarList id={menusId.miniProject} data={navbarListData} />
+              <NavbarList id={menusId.examsTasks} data={navbarListData} />
+            </div>
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      {/*        <NavLink to={PATH.COUNTER} className={`${s.btn} ${s.mondayBtn}`}>
             Counter
         </NavLink>
       <NavLink to={PATH.MONDAY} className={`${s.btn} ${s.mondayBtn}`}>
@@ -28,7 +70,7 @@ export const Navbar = () => {
       </NavLink>
       <NavLink to={PATH.TESTS} className={`${s.btn} ${s.testBtn}`}>
         Test
-      </NavLink>
+      </NavLink>*/}
     </nav>
   );
 };
