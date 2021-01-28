@@ -36,8 +36,9 @@ export const Monday = () => {
     <div className={s.counterWrap}>
       <CounterDisplay counter={counter} />
       <div className={s.btnWrapper}>
-        {data.map((item) => (
+        {data.map((item, i) => (
           <Button
+              key={i}
             name={item.name}
             disabled={item.disabled}
             callback={item.callback}
