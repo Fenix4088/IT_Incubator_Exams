@@ -23,20 +23,25 @@ type NavbarListT = {
   data: NavbarListDataT;
 };
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  menuTitle: {
-    color: mainStylesData.colors.mainOrange
-  },
-  menuPaper: {
-    position: "relative"
-  },
-  menuList: {
-    top: "6px",
-    left: "-86px",
-    position: "absolute",
-    minWidth: "150px",
-  }
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    menuTitle: {
+      color: mainStylesData.colors.mainOrange,
+    },
+    menuPaper: {
+      position: "relative",
+    },
+    menuList: {
+      top: "6px",
+      left: "-86px",
+      position: "absolute",
+      minWidth: "150px",
+      color: mainStylesData.colors.mainOrange,
+      background: "#0a0a0abf",
+
+    },
+  })
+);
 
 export const NavbarList: React.FC<NavbarListT> = (props) => {
   const classes = useStyles();
