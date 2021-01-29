@@ -16,13 +16,27 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { NavbarListDataT } from "./NavbarData";
+import {mainStylesData} from "../../projectStyles/projectStyles";
 
 type NavbarListT = {
   id: string;
   data: NavbarListDataT;
 };
 
-const useStyles = makeStyles((theme: Theme) => createStyles({}));
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  menuTitle: {
+    color: mainStylesData.colors.mainOrange
+  },
+  menuPaper: {
+    position: "relative"
+  },
+  menuList: {
+    top: "6px",
+    left: "-86px",
+    position: "absolute",
+    minWidth: "150px",
+  }
+}));
 
 export const NavbarList: React.FC<NavbarListT> = (props) => {
   const classes = useStyles();
@@ -68,6 +82,7 @@ export const NavbarList: React.FC<NavbarListT> = (props) => {
         aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
+        className={classes.menuTitle}
       >
         {title}
       </Button>
@@ -85,8 +100,9 @@ export const NavbarList: React.FC<NavbarListT> = (props) => {
               transformOrigin:
                 placement === "bottom" ? "center top" : "center bottom",
             }}
+
           >
-            <Paper>
+            <Paper className={classes.menuList}>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList
                   autoFocusItem={open}

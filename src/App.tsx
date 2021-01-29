@@ -7,9 +7,9 @@ import { Tuesday } from "./Components/Tuesday/Tuesday";
 import { Wednesday } from "./Components/Wednesday/Wednesday";
 import { Thursday } from "./Components/Thursday/Thursday";
 import { Friday } from "./Components/Friday/Friday";
-import { Test } from "./Components/Test/Tests";
 import { Counter } from "./Components/Counter/Counter";
 import {Error404} from "./Components/Error404/Error404";
+import {TodoListApp} from "./Components/TodoListContainer/TodoListApp";
 
 type PathType = {
     [key: string] : string
@@ -22,7 +22,7 @@ export const PATH:PathType = {
     WEDNESDAY: "/wednesday",
     THURSDAY: "/thursday",
     FRIDAY: "/friday",
-    TESTS: "/tests",
+    TODOLIST: "/todolist",
 }
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
             <Route path={PATH.WEDNESDAY} render={() => <Wednesday/>}/>
             <Route path={PATH.THURSDAY} render={() => <Thursday/>}/>
             <Route path={PATH.FRIDAY} render={() => <Friday/>}/>
-            <Route path={PATH.TESTS} render={() => <Test/>}/>
+            <Route path={PATH.TODOLIST} render={() => <TodoListApp/>}/>
             <Route render={() => <Error404 />} />
         </Switch>
     </div>

@@ -17,7 +17,7 @@ type NavbarListDataItemT = {
 export const navbarListData: NavbarListDataT = {
   [menusId.miniProject]: {
     title: "Mini projects",
-    itemNames: ["counter", "tests"],
+    itemNames: ["counter", "todolist"],
   },
   [menusId.examsTasks]: {
     title: "Exams projects",
