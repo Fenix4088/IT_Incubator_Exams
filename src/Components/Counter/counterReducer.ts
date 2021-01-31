@@ -128,60 +128,60 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
 };
 
 //* Action creators
-export const SetMaxValueAC = (maxValue: number):SetMaxValueAT => {
+export const setMaxValueAC = (maxValue: number):SetMaxValueAT => {
   return {
     type: actionTypeNames.SET_MAX_VALUE,
     value: maxValue,
   }
 }
-export const SetStartValueAC = (startValue: number):SetStartValueAT => {
+export const setStartValueAC = (startValue: number):SetStartValueAT => {
   return {
     type: actionTypeNames.SET_START_VALUE,
     value: startValue,
   }
 }
-export const DisabledSetBtnAC = (status: boolean):DisabledSetBtnAT => {
+export const disabledSetBtnAC = (status: boolean):DisabledSetBtnAT => {
   return {
     type: actionTypeNames.DISABLED_SET_BTN,
     status
   }
 }
-export const IncCounterAC = ():IncCounterAT => {
+export const incCounterAC = ():IncCounterAT => {
   return {
     type: actionTypeNames.INC_COUNTER,
   }
 }
-export const SetCurrentValueAC = (currentValue: number):SetCurrentValueAT => {
+export const setCurrentValueAC = (currentValue: number):SetCurrentValueAT => {
   return {
     type: actionTypeNames.SET_CURRENT_VALUE,
     value: currentValue,
   }
 }
-export const ResetCounterAC = ():ResetCounterAT => {
+export const resetCounterAC = ():ResetCounterAT => {
   return {
     type: actionTypeNames.RESET_COUNTER,
   }
 }
-export const DisableCounterControlsBtnAC = (incBtnStatus: boolean, resetBtnStatus: boolean):DisableCounterControlsBtnAT => {
+export const disableCounterControlsBtnAC = (incBtnStatus: boolean, resetBtnStatus: boolean):DisableCounterControlsBtnAT => {
   return {
     type: actionTypeNames.DISABLE_COUNTER_CONTROL_BTNS,
     incBtnStatus,
     resetBtnStatus,
   }
 }
-export const MaxValueErrorStatusAC = (status: boolean):MaxValueErrorStatusAT => {
+export const maxValueErrorStatusAC = (status: boolean):MaxValueErrorStatusAT => {
   return {
     type: actionTypeNames.MAX_VALUE_ERROR,
     status
   }
 }
-export const StartValueErrorStatusAC = (status: boolean):StartValueErrorStatusAT => {
+export const startValueErrorStatusAC = (status: boolean):StartValueErrorStatusAT => {
   return {
     type: actionTypeNames.START_VALUE_ERROR,
     status
   }
 }
-export const ToggleSettingsWindowAC = (status: boolean):ToggleSettingsWindowAT => {
+export const toggleSettingsWindowAC = (status: boolean):ToggleSettingsWindowAT => {
   return {
     type: actionTypeNames.TOGGLE_SETTINGS_WINDOW,
     status

@@ -4,11 +4,11 @@ import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
 import {
   ActionType,
- DisableCounterControlsBtnAC,
-  DisabledSetBtnAC, MaxValueErrorStatusAC,
-  SetCurrentValueAC,
-  SetMaxValueAC,
-  SetStartValueAC, StartValueErrorStatusAC, ToggleSettingsWindowAC
+ disableCounterControlsBtnAC,
+  disabledSetBtnAC, maxValueErrorStatusAC,
+  setCurrentValueAC,
+  setMaxValueAC,
+  setStartValueAC, startValueErrorStatusAC, toggleSettingsWindowAC
 } from "./counterReducer";
 import { setLS } from "./localStorage";
 
@@ -23,47 +23,47 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
   const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = +e.currentTarget.value;
 
-    dispatch(SetMaxValueAC(inputValue));
-    dispatch(DisableCounterControlsBtnAC(true, true));
+    dispatch(setMaxValueAC(inputValue));
+    dispatch(disableCounterControlsBtnAC(true, true));
 
     if (
       inputValue > state.startValue &&
       inputValue >= 0 &&
       state.startValue >= 0
     ) {
-      dispatch(MaxValueErrorStatusAC(false));
-      dispatch(StartValueErrorStatusAC(false));
-      dispatch(DisabledSetBtnAC(false));
+      dispatch(maxValueErrorStatusAC(false));
+      dispatch(startValueErrorStatusAC(false));
+      dispatch(disabledSetBtnAC(false));
     } else {
-      dispatch(MaxValueErrorStatusAC(true));
-      dispatch(DisabledSetBtnAC(true));
+      dispatch(maxValueErrorStatusAC(true));
+      dispatch(disabledSetBtnAC(true));
     }
   };
 
   const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = +e.currentTarget.value;
 
-    dispatch(SetStartValueAC(inputValue));
-    dispatch(DisableCounterControlsBtnAC(true, true));
+    dispatch(setStartValueAC(inputValue));
+    dispatch(disableCounterControlsBtnAC(true, true));
 
     if (inputValue < state.maxValue && inputValue >= 0 && state.maxValue >= 0) {
-      dispatch(StartValueErrorStatusAC(false));
-      dispatch(MaxValueErrorStatusAC(false));
-      dispatch(DisabledSetBtnAC(false));
+      dispatch(startValueErrorStatusAC(false));
+      dispatch(maxValueErrorStatusAC(false));
+      dispatch(disabledSetBtnAC(false));
     } else {
-      dispatch(StartValueErrorStatusAC(true));
-      dispatch(DisabledSetBtnAC(true));
+      dispatch(startValueErrorStatusAC(true));
+      dispatch(disabledSetBtnAC(true));
     }
   };
 
   const showCounterDisplay = () => {
-    dispatch(ToggleSettingsWindowAC(false));
+    dispatch(toggleSettingsWindowAC(false));
   };
 
   const onSetBtnClick = () => {
-    dispatch(DisableCounterControlsBtnAC(false, true));
-    dispatch(DisabledSetBtnAC(true));
-    dispatch(SetCurrentValueAC(state.startValue));
+    dispatch(disableCounterControlsBtnAC(false, true));
+    dispatch(disabledSetBtnAC(true));
+    dispatch(setCurrentValueAC(state.startValue));
     setLS("Saved Values", {
       maxValue: state.maxValue,
       startValue: state.startValue,

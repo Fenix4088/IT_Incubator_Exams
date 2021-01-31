@@ -4,10 +4,10 @@ import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
 import {
   ActionType,
-  DisableCounterControlsBtnAC,
-  IncCounterAC,
-  ResetCounterAC,
-  ToggleSettingsWindowAC
+  disableCounterControlsBtnAC,
+  incCounterAC,
+  resetCounterAC,
+  toggleSettingsWindowAC
 } from "./counterReducer";
 
 type CounterScreenPropsType = {
@@ -31,21 +31,21 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
   const onIncBtnClick = () => {
     console.log(currentValue);
     if (maxValue > currentValue) {
-      dispatch(IncCounterAC());
+      dispatch(incCounterAC());
     }
 
     if (maxValue === currentValue + 1) {
-      dispatch(DisableCounterControlsBtnAC(true,false));
+      dispatch(disableCounterControlsBtnAC(true,false));
     }
   };
 
   const onResetBtnClick = () => {
-    dispatch(ResetCounterAC());
-    dispatch(DisableCounterControlsBtnAC(false, true));
+    dispatch(resetCounterAC());
+    dispatch(disableCounterControlsBtnAC(false, true));
   };
 
   const onSettingsBtnClick = () => {
-    dispatch(ToggleSettingsWindowAC(true));
+    dispatch(toggleSettingsWindowAC(true));
   };
 
   return (
