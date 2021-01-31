@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button } from "./Button";
 import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
-import { ActionType, actionTypeNames } from "./counterReducer";
+import {
+  ActionType,
+  DisableCounterControlsBtnAC,
+  IncCounterAC,
+  ResetCounterAC,
+  ToggleSettingsWindowAC
+} from "./counterReducer";
 
 type CounterScreenPropsType = {
   state: StateType;
@@ -22,39 +28,24 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
 
   const { dispatch } = props;
 
-  const {
-    INC_COUNTER,
-    DISABLE_COUNTER_CONTROL_BTNS,
-    RESET_COUNTER,
-    TOGGLE_SETTINGS_WINDOW,
-  } = actionTypeNames;
-
   const onIncBtnClick = () => {
     console.log(currentValue);
     if (maxValue > currentValue) {
-      dispatch({ type: INC_COUNTER });
+      dispatch(IncCounterAC());
     }
 
     if (maxValue === currentValue + 1) {
-      dispatch({
-        type: DISABLE_COUNTER_CONTROL_BTNS,
-        incBtnStatus: true,
-        resetBtnStatus: false,
-      });
+      dispatch(DisableCounterControlsBtnAC(true,false));
     }
   };
 
   const onResetBtnClick = () => {
-    dispatch({ type: RESET_COUNTER });
-    dispatch({
-      type: DISABLE_COUNTER_CONTROL_BTNS,
-      incBtnStatus: false,
-      resetBtnStatus: true,
-    });
+    dispatch(ResetCounterAC());
+    dispatch(DisableCounterControlsBtnAC(false, true));
   };
 
   const onSettingsBtnClick = () => {
-    dispatch({ type: TOGGLE_SETTINGS_WINDOW, status: true });
+    dispatch(ToggleSettingsWindowAC(true));
   };
 
   return (
