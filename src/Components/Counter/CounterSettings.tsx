@@ -11,14 +11,16 @@ import {
   setStartValueAC, startValueErrorStatusAC, toggleSettingsWindowAC
 } from "./counterReducer";
 import { setLS } from "./localStorage";
+import {useDispatch} from "react-redux";
 
 type CounterSettingsType = {
   state: StateType;
-  dispatch: (action: ActionType) => void;
+  // dispatch: (action: ActionType) => void;
 };
 
 export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
-  const { state, dispatch } = props;
+  const { state } = props;
+  const dispatch = useDispatch();
 
   const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = +e.currentTarget.value;
