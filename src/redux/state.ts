@@ -5,6 +5,6 @@ const rootReducer = combineReducers({
     counterReducer
 });
 
-type rootStateT = ReturnType<typeof rootReducer>
+export type rootStateT = ReturnType<typeof rootReducer>
 
 export const store = createStore(rootReducer)

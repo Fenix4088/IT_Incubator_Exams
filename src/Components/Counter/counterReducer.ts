@@ -2,6 +2,7 @@
 
 import {StateType} from "./Counter";
 import {getLS} from "./localStorage";
+import {rootStateT} from "../../redux/state";
 
 export type ActionType =
   | SetMaxValueAT
@@ -202,3 +203,7 @@ export const toggleSettingsWindowAC = (status: boolean):ToggleSettingsWindowAT =
     status
   }
 }
+//* //Action creators
+
+//* Selects
+export const counterState = (state: rootStateT) => state.counterReducer;

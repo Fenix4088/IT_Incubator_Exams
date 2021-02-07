@@ -42,7 +42,7 @@ export const Counter = () => {
         <CounterScreen state={state} dispatch={dispatch} />
       )}*/}
 
-      <CounterSettings state={state} />
+      <CounterSettings />
       <CounterScreen state={state} dispatch={dispatch} />
     </div>
   );
