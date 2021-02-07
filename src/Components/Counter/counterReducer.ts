@@ -1,6 +1,8 @@
 // * main action type
 
 import {StateType} from "./Counter";
+import {getLS} from "./localStorage";
+import {rootStateT} from "../../redux/state";
 
 export type ActionType =
   | SetMaxValueAT
@@ -68,7 +70,21 @@ export enum actionTypeNames {
   TOGGLE_SETTINGS_WINDOW = "TOGGLE-SETTINGS-WINDOW",
 }
 
-export const reducer = (state: StateType, action: ActionType): StateType => {
+const initialState: StateType = {
+  maxValue: getLS("Saved Values", { maxValue: 5, startValue: 0 }).maxValue || 5,
+  startValue:
+      getLS("Saved Values", { maxValue: 5, startValue: 0 }).startValue || 0,
+  currentValue:
+      getLS("Saved Values", { maxValue: 5, startValue: 0 }).startValue || 0,
+  setBtnStatus: true,
+  incBtnStatus: false,
+  resetBtnStatus: true,
+  maxValueErrorStatus: false,
+  startValueErrorStatus: false,
+  showSettings: false,
+};
+
+export const counterReducer = (state: StateType = initialState, action: ActionType): StateType => {
   switch (action.type) {
     case actionTypeNames.SET_MAX_VALUE:
       return {
@@ -123,7 +139,7 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
         showSettings: action.status,
       };
     default:
-      throw new Error("Bad action");
+      return state
   }
 };
 
@@ -187,3 +203,8 @@ export const toggleSettingsWindowAC = (status: boolean):ToggleSettingsWindowAT =
     status
   }
 }
+//* //Action creators
+
+//* Selects
+export const counterState = (state: rootStateT) => state.counterReducer;
+export const selectShowSettings = (state: rootStateT) => state.counterReducer.showSettings

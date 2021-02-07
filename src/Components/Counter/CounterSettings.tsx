@@ -1,24 +1,29 @@
 import React, { ChangeEvent } from "react";
 import { Button } from "./Button";
-import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
 import {
-  ActionType,
- disableCounterControlsBtnAC,
-  disabledSetBtnAC, maxValueErrorStatusAC,
+  counterState,
+  disableCounterControlsBtnAC,
+  disabledSetBtnAC,
+  maxValueErrorStatusAC,
   setCurrentValueAC,
   setMaxValueAC,
-  setStartValueAC, startValueErrorStatusAC, toggleSettingsWindowAC
+  setStartValueAC,
+  startValueErrorStatusAC,
+  toggleSettingsWindowAC,
 } from "./counterReducer";
 import { setLS } from "./localStorage";
+import { useDispatch, useSelector } from "react-redux";
 
-type CounterSettingsType = {
-  state: StateType;
-  dispatch: (action: ActionType) => void;
-};
-
-export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
-  const { state, dispatch } = props;
+export const CounterSettings: React.FC = () => {
+  const dispatch = useDispatch();
+  const {
+    startValue,
+    maxValue,
+    maxValueErrorStatus,
+    startValueErrorStatus,
+    setBtnStatus,
+  } = useSelector(counterState);
 
   const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = +e.currentTarget.value;
@@ -26,11 +31,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     dispatch(setMaxValueAC(inputValue));
     dispatch(disableCounterControlsBtnAC(true, true));
 
-    if (
-      inputValue > state.startValue &&
-      inputValue >= 0 &&
-      state.startValue >= 0
-    ) {
+    if (inputValue > startValue && inputValue >= 0 && startValue >= 0) {
       dispatch(maxValueErrorStatusAC(false));
       dispatch(startValueErrorStatusAC(false));
       dispatch(disabledSetBtnAC(false));
@@ -46,7 +47,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     dispatch(setStartValueAC(inputValue));
     dispatch(disableCounterControlsBtnAC(true, true));
 
-    if (inputValue < state.maxValue && inputValue >= 0 && state.maxValue >= 0) {
+    if (inputValue < maxValue && inputValue >= 0 && maxValue >= 0) {
       dispatch(startValueErrorStatusAC(false));
       dispatch(maxValueErrorStatusAC(false));
       dispatch(disabledSetBtnAC(false));
@@ -63,10 +64,10 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
   const onSetBtnClick = () => {
     dispatch(disableCounterControlsBtnAC(false, true));
     dispatch(disabledSetBtnAC(true));
-    dispatch(setCurrentValueAC(state.startValue));
+    dispatch(setCurrentValueAC(startValue));
     setLS("Saved Values", {
-      maxValue: state.maxValue,
-      startValue: state.startValue,
+      maxValue: maxValue,
+      startValue: startValue,
     });
     showCounterDisplay();
   };
@@ -77,21 +78,19 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
         <div className={s.row}>
           <span className={s.inputTitle}>max value: </span>
           <input
-            value={state.maxValue}
+            value={maxValue}
             onChange={onChangeMaxValue}
             type="number"
-            className={`${state.maxValueErrorStatus ? s.errorField : ""} ${
-              s.input
-            }`}
+            className={`${maxValueErrorStatus ? s.errorField : ""} ${s.input}`}
           />
         </div>
         <div className={s.row}>
           <span className={s.inputTitle}>start value: </span>
           <input
             onChange={onChangeStartValue}
-            value={state.startValue}
+            value={startValue}
             type="number"
-            className={`${state.startValueErrorStatus ? s.errorField : ""} ${
+            className={`${startValueErrorStatus ? s.errorField : ""} ${
               s.input
             }`}
           />
@@ -100,9 +99,9 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
       <div>
         <Button
           value={"Set"}
-          disabled={state.setBtnStatus}
+          disabled={setBtnStatus}
           onClick={onSetBtnClick}
-          className={`${state.setBtnStatus ? s.disabledBtn : s.incBtn}`}
+          className={`${setBtnStatus ? s.disabledBtn : s.incBtn}`}
         />
       </div>
     </div>

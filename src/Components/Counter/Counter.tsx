@@ -1,9 +1,9 @@
-import React, { useReducer } from "react";
+import React from "react";
 import s from "./Counter.module.scss";
 import { CounterSettings } from "./CounterSettings";
 import { CounterScreen } from "./CounterScreen";
-import { reducer } from "./counterReducer";
-import { getLS } from "./localStorage";
+import { selectShowSettings } from "./counterReducer";
+import { useSelector } from "react-redux";
 
 export type StateType = {
   maxValue: number;
@@ -17,30 +17,12 @@ export type StateType = {
   showSettings: boolean;
 };
 
-const initialState: StateType = {
-  maxValue: getLS("Saved Values", { maxValue: 5, startValue: 0 }).maxValue || 5,
-  startValue:
-    getLS("Saved Values", { maxValue: 5, startValue: 0 }).startValue || 0,
-  currentValue:
-    getLS("Saved Values", { maxValue: 5, startValue: 0 }).startValue || 0,
-  setBtnStatus: true,
-  incBtnStatus: false,
-  resetBtnStatus: true,
-  maxValueErrorStatus: false,
-  startValueErrorStatus: false,
-  showSettings: false,
-};
-
 export const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const showSettings = useSelector(selectShowSettings);
 
   return (
     <div className={s.counterWrap}>
-      {state.showSettings ? (
-        <CounterSettings state={state} dispatch={dispatch} />
-      ) : (
-        <CounterScreen state={state} dispatch={dispatch} />
-      )}
+      {showSettings ? <CounterSettings /> : <CounterScreen />}
     </div>
   );
 };
