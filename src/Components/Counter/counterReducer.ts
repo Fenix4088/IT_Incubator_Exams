@@ -1,7 +1,6 @@
 // * main action type
 
 import {StateType} from "./Counter";
-import {getLS} from "./localStorage";
 import {rootStateT} from "../../redux/state";
 
 export type ActionType =
@@ -71,11 +70,9 @@ export enum actionTypeNames {
 }
 
 const initialState: StateType = {
-  maxValue: getLS("Saved Values", { maxValue: 5, startValue: 0 }).maxValue || 5,
-  startValue:
-      getLS("Saved Values", { maxValue: 5, startValue: 0 }).startValue || 0,
-  currentValue:
-      getLS("Saved Values", { maxValue: 5, startValue: 0 }).startValue || 0,
+  maxValue: 5,
+  startValue: 0,
+  currentValue: 0,
   setBtnStatus: true,
   incBtnStatus: false,
   resetBtnStatus: true,

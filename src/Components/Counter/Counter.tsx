@@ -22,7 +22,7 @@ export const Counter = () => {
 
   return (
     <div className={s.counterWrap}>
-      {showSettings ? <CounterSettings /> : <CounterScreen />}
+      {showSettings ? <CounterSettings/> : <CounterScreen />}
     </div>
   );
 };

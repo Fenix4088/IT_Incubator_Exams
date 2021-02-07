@@ -12,7 +12,6 @@ import {
   startValueErrorStatusAC,
   toggleSettingsWindowAC,
 } from "./counterReducer";
-import { setLS } from "./localStorage";
 import { useDispatch, useSelector } from "react-redux";
 
 export const CounterSettings: React.FC = () => {
@@ -65,10 +64,6 @@ export const CounterSettings: React.FC = () => {
     dispatch(disableCounterControlsBtnAC(false, true));
     dispatch(disabledSetBtnAC(true));
     dispatch(setCurrentValueAC(startValue));
-    setLS("Saved Values", {
-      maxValue: maxValue,
-      startValue: startValue,
-    });
     showCounterDisplay();
   };
 
