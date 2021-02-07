@@ -1,21 +1,17 @@
 import React from "react";
 import { Button } from "./Button";
-import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
 import {
-  ActionType,
+  counterState,
   disableCounterControlsBtnAC,
   incCounterAC,
   resetCounterAC,
-  toggleSettingsWindowAC
+  toggleSettingsWindowAC,
 } from "./counterReducer";
+import { useDispatch, useSelector } from "react-redux";
 
-type CounterScreenPropsType = {
-  state: StateType;
-  dispatch: (action: ActionType) => void;
-};
-
-export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
+export const CounterScreen: React.FC = () => {
+  const dispatch = useDispatch();
   const {
     maxValue,
     setBtnStatus,
@@ -24,18 +20,15 @@ export const CounterScreen: React.FC<CounterScreenPropsType> = (props) => {
     currentValue,
     maxValueErrorStatus,
     startValueErrorStatus,
-  } = props.state;
-
-  const { dispatch } = props;
+  } = useSelector(counterState);
 
   const onIncBtnClick = () => {
-    console.log(currentValue);
     if (maxValue > currentValue) {
       dispatch(incCounterAC());
     }
 
     if (maxValue === currentValue + 1) {
-      dispatch(disableCounterControlsBtnAC(true,false));
+      dispatch(disableCounterControlsBtnAC(true, false));
     }
   };
 

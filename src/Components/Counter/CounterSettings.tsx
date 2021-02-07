@@ -1,27 +1,29 @@
 import React, { ChangeEvent } from "react";
 import { Button } from "./Button";
-import { StateType } from "./Counter";
 import s from "./Counter.module.scss";
 import {
-  ActionType, counterState,
+  counterState,
   disableCounterControlsBtnAC,
-  disabledSetBtnAC, maxValueErrorStatusAC,
+  disabledSetBtnAC,
+  maxValueErrorStatusAC,
   setCurrentValueAC,
   setMaxValueAC,
-  setStartValueAC, startValueErrorStatusAC, toggleSettingsWindowAC
+  setStartValueAC,
+  startValueErrorStatusAC,
+  toggleSettingsWindowAC,
 } from "./counterReducer";
 import { setLS } from "./localStorage";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-type CounterSettingsType = {
-  // state: StateType;
-  // dispatch: (action: ActionType) => void;
-};
-
-export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
-  // const { state } = props;
+export const CounterSettings: React.FC = () => {
   const dispatch = useDispatch();
-  const {startValue, maxValue, maxValueErrorStatus, startValueErrorStatus, setBtnStatus} = useSelector(counterState)
+  const {
+    startValue,
+    maxValue,
+    maxValueErrorStatus,
+    startValueErrorStatus,
+    setBtnStatus,
+  } = useSelector(counterState);
 
   const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = +e.currentTarget.value;
@@ -29,11 +31,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
     dispatch(setMaxValueAC(inputValue));
     dispatch(disableCounterControlsBtnAC(true, true));
 
-    if (
-      inputValue > startValue &&
-      inputValue >= 0 &&
-      startValue >= 0
-    ) {
+    if (inputValue > startValue && inputValue >= 0 && startValue >= 0) {
       dispatch(maxValueErrorStatusAC(false));
       dispatch(startValueErrorStatusAC(false));
       dispatch(disabledSetBtnAC(false));
@@ -83,9 +81,7 @@ export const CounterSettings: React.FC<CounterSettingsType> = (props) => {
             value={maxValue}
             onChange={onChangeMaxValue}
             type="number"
-            className={`${maxValueErrorStatus ? s.errorField : ""} ${
-              s.input
-            }`}
+            className={`${maxValueErrorStatus ? s.errorField : ""} ${s.input}`}
           />
         </div>
         <div className={s.row}>

@@ -207,3 +207,4 @@ export const toggleSettingsWindowAC = (status: boolean):ToggleSettingsWindowAT =
 
 //* Selects
 export const counterState = (state: rootStateT) => state.counterReducer;
+export const selectShowSettings = (state: rootStateT) => state.counterReducer.showSettings
