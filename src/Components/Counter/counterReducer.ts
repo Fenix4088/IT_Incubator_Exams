@@ -130,7 +130,7 @@ export const counterReducer = (state: StateType = initialState, action: ActionTy
         ...state,
         startValueErrorStatus: action.status,
       };
-      case actionTypeNames.TOGGLE_SETTINGS_WINDOW:
+    case actionTypeNames.TOGGLE_SETTINGS_WINDOW:
       return {
         ...state,
         showSettings: action.status,

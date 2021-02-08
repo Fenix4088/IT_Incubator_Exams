@@ -13,6 +13,7 @@ import {
   toggleSettingsWindowAC,
 } from "./counterReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { CounterInputField } from "./CounterInputField";
 
 export const CounterSettings: React.FC = () => {
   const dispatch = useDispatch();
@@ -67,29 +68,32 @@ export const CounterSettings: React.FC = () => {
     showCounterDisplay();
   };
 
+  const inputsData = [
+    {
+      title: "max value:",
+      value: maxValue,
+      onChange: onChangeMaxValue,
+      className: `${maxValueErrorStatus ? s.errorField : ""} ${s.input}`,
+    },
+    {
+      title: "start value:",
+      value: startValue,
+      onChange: onChangeStartValue,
+      className: `${startValueErrorStatus ? s.errorField : ""} ${s.input}`,
+    },
+  ];
+
   return (
     <div className={s.block}>
       <div>
-        <div className={s.row}>
-          <span className={s.inputTitle}>max value: </span>
-          <input
-            value={maxValue}
-            onChange={onChangeMaxValue}
-            type="number"
-            className={`${maxValueErrorStatus ? s.errorField : ""} ${s.input}`}
+        {inputsData.map((elem, i) => (
+          <CounterInputField
+            title={elem.title}
+            value={elem.value}
+            onChange={elem.onChange}
+            className={elem.className}
           />
-        </div>
-        <div className={s.row}>
-          <span className={s.inputTitle}>start value: </span>
-          <input
-            onChange={onChangeStartValue}
-            value={startValue}
-            type="number"
-            className={`${startValueErrorStatus ? s.errorField : ""} ${
-              s.input
-            }`}
-          />
-        </div>
+        ))}
       </div>
       <div>
         <Button
