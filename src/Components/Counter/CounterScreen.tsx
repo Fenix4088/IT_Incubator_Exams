@@ -41,6 +41,13 @@ export const CounterScreen: React.FC = () => {
     dispatch(toggleSettingsWindowAC(true));
   };
 
+  const buttonsData = [
+    {value: "inc", disabled: incBtnStatus, onClick: onIncBtnClick, className: `${incBtnStatus ? s.disabledBtn : s.incBtn} ${s.btn}`},
+    {value: "reset", disabled: resetBtnStatus, onClick: onResetBtnClick, className: `${resetBtnStatus ? s.disabledBtn : s.resetBtn} ${s.btn}`},
+    {value: "settings", disabled: false, onClick: onSettingsBtnClick, className: `${s.settingsBtn} ${s.btn}`},
+  ]
+
+
   return (
     <div className={s.block}>
       <div className={maxValue === currentValue ? s.colorRed : ""}>
@@ -53,7 +60,7 @@ export const CounterScreen: React.FC = () => {
         )}
       </div>
       <div>
-        <Button
+{/*        <Button
           value={"inc"}
           disabled={incBtnStatus}
           onClick={onIncBtnClick}
@@ -69,7 +76,11 @@ export const CounterScreen: React.FC = () => {
           value={"settings"}
           onClick={onSettingsBtnClick}
           className={`${s.settingsBtn} ${s.btn}`}
-        />
+        />*/}
+
+        {buttonsData.map((b, i) => {
+          return <Button value={b.value} disabled={b.disabled} onClick={b.onClick} className={b.className}/>
+        })}
       </div>
     </div>
   );

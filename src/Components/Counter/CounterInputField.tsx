@@ -7,7 +7,7 @@ type CounterInputFieldT = DetailedHTMLProps<
 > & {
   title: string;
 };
-export const CounterInputField = (props: CounterInputFieldT) => {
+export const CounterInputField: React.FC<CounterInputFieldT> = (props) => {
   const { title, value, onChange, className } = props;
   return (
     <div className={s.row}>
