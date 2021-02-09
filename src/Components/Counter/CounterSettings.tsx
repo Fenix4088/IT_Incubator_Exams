@@ -87,7 +87,7 @@ export const CounterSettings: React.FC = () => {
     <div className={s.block}>
       <div>
         {inputsData.map((elem, i) => (
-          <CounterInputField
+          <CounterInputField key={i}
             title={elem.title}
             value={elem.value}
             onChange={elem.onChange}

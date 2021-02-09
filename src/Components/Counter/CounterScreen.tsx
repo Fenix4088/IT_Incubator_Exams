@@ -60,7 +60,7 @@ export const CounterScreen: React.FC = () => {
       </div>
       <div>
         {buttonsData.map((b, i) => {
-          return <Button value={b.value} disabled={b.disabled} onClick={b.onClick} className={b.className}/>
+          return <Button key={i} value={b.value} disabled={b.disabled} onClick={b.onClick} className={b.className}/>
         })}
       </div>
     </div>
